@@ -57,10 +57,16 @@ Content-Type: application/json
 }
 
 ### Login User
-POST http://localhost:3001/auth/login
+POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
 "email": "john@gmail.com",
 "password": "123456"
 }
+
+### Access Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY2o9tIiwic3ViIjo0LCJpYXQiOjE3NDYyOTY1MDksImV4cCI6MTc0NjM4MjkwOX0.3UbGFSO3kg8t3tPLhbq-h-0Icr_hc3mfnoGCMUYy8oo
+
+### Profile
+GET http://localhost:3000/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjo0LCJpYXQiOjE3NDYyOTY1MDksImV4cCI6MTc0NjM4MjkwOX0.3UbGFSO3kg8t3tPLhbq-h-0Icr_hc3mfnoGCMUYy8oo
