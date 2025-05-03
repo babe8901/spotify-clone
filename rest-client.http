@@ -10,9 +10,10 @@ GET http://localhost:3000/songs/2
 ###
 POST http://localhost:3000/songs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbjFAZ21haWwuY29tIiwidXNlcklkIjo5LCJhcnRpc3RJZCI6MywiaWF0IjoxNzQ2MzA0MTg0LCJleHAiOjE3NDYzOTA1ODR9.RXTSmFDfWCvYo9tFsnjYNww2Eo7E3KbCMRQHxc4FLHg
 
 {
-  "title": "You for me 11",
+  "title": "You for me 121",
   "artists": [1,2],
   "releasedDate": "2024-09-29",
   "duration": "02:34",
@@ -65,8 +66,37 @@ Content-Type: application/json
 "password": "123456"
 }
 
-### Access Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY2o9tIiwic3ViIjo0LCJpYXQiOjE3NDYyOTY1MDksImV4cCI6MTc0NjM4MjkwOX0.3UbGFSO3kg8t3tPLhbq-h-0Icr_hc3mfnoGCMUYy8oo
+### Access Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjo0LCJpYXQiOjE3NDYzMDQxNjAsImV4cCI6MTc0NjM5MDU2MH0.qkSc2jwp9ZRoSyUIrvT9x6m9iF32TWMdPpJJjRUnxmI
 
 ### Profile
 GET http://localhost:3000/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjo0LCJpYXQiOjE3NDYyOTY1MDksImV4cCI6MTc0NjM4MjkwOX0.3UbGFSO3kg8t3tPLhbq-h-0Icr_hc3mfnoGCMUYy8oo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjo0LCJpYXQiOjE3NDYzMDQxNjAsImV4cCI6MTc0NjM5MDU2MH0.qkSc2jwp9ZRoSyUIrvT9x6m9iF32TWMdPpJJjRUnxmI
+
+
+### Signup Artist
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+"firstName": "Martin",
+"lastName": "Garrix",
+"email": "martin1@gmail.com",
+"password": "123456"
+}
+
+### Login Artist
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+"email": "martin1@gmail.com",
+"password": "123456"
+}
+
+
+### Access Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbjFAZ21haWwuY29tIiwidXNlcklkIjo5LCJhcnRpc3RJZCI6MywiaWF0IjoxNzQ2MzA0MTg0LCJleHAiOjE3NDYzOTA1ODR9.RXTSmFDfWCvYo9tFsnjYNww2Eo7E3KbCMRQHxc4FLHg
+
+
+### Profile
+GET http://localhost:3000/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbjFAZ21haWwuY29tIiwidXNlcklkIjo5LCJhcnRpc3RJZCI6MywiaWF0IjoxNzQ2MzA0MTg0LCJleHAiOjE3NDYzOTA1ODR9.RXTSmFDfWCvYo9tFsnjYNww2Eo7E3KbCMRQHxc4FLHg

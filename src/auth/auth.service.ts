@@ -3,12 +3,15 @@ import { UsersService } from 'src/users/users.service';
 import { LoginDTO } from './dto/login-dto';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
+import { ArtistsService } from 'src/artists/artists.service';
+import { PayloadType } from './types';
 
 @Injectable()
 export class AuthService {
   constructor(
     private userService: UsersService,
     private jwtService: JwtService,
+    private artistService: ArtistsService,
   ) {}
 
   async login(loginDTO: LoginDTO): Promise<{ accessToken: string }> {
@@ -18,7 +21,16 @@ export class AuthService {
       user.password,
     );
     if (passwordMatched) {
-      const payload = { email: user.email, sub: user.id };
+      const payload: PayloadType = {
+        email: user.email,
+        userId: user.id,
+      };
+
+      const artist = await this.artistService.findArtist(user.id);
+      if (artist) {
+        payload.artistId = artist.id;
+      }
+
       return { accessToken: this.jwtService.sign(payload) };
     } else {
       throw new UnauthorizedException('Password does not match');
