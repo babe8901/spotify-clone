@@ -12,7 +12,7 @@ POST http://localhost:3000/songs
 Content-Type: application/json
 
 {
-  "title": "You for me",
+  "title": "You for me 11",
   "artists": [1,2],
   "releasedDate": "2024-09-29",
   "duration": "02:34",
@@ -40,7 +40,18 @@ POST http://localhost:3000/playlists
 Content-Type: application/json
 
 {
-  "name": "Feel Good Now",
+  "name": "Feel Good Now 1",
   "songs": [6],
   "user": 2
+}
+
+### Signup User
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+"firstName": "john",
+"lastName": "doe",
+"email": "john@gmail.com",
+"password": "123456"
 }
