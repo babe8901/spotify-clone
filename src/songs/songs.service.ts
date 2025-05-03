@@ -9,43 +9,50 @@ import {
   paginate,
   Pagination,
 } from 'nestjs-typeorm-paginate';
+import { Artist } from 'src/artists/artist.entity';
 
 @Injectable()
 export class SongsService {
   constructor(
-    @InjectRepository(Song) private songRepository: Repository<Song>,
+    @InjectRepository(Song) private songsRepository: Repository<Song>,
+    @InjectRepository(Artist) private artistsRepository: Repository<Artist>,
   ) {}
 
-  create(songDTO: CreateSongDTO): Promise<Song> {
+  async create(songDTO: CreateSongDTO): Promise<Song> {
     // save the song to db
     const song = new Song();
     song.title = songDTO.title;
-    song.artists = songDTO.artists;
+    // song.artists = songDTO.artists;
     song.duration = songDTO.duration;
     song.lyrics = songDTO.lyrics;
     song.releasedDate = songDTO.releasedDate;
 
-    return this.songRepository.save(song);
+    // find all the artists based on ids
+    const artists = await this.artistsRepository.findByIds(songDTO.artists);
+    // set the relation with artist and song
+    song.artists = artists;
+
+    return this.songsRepository.save(song);
   }
 
   findAll(): Promise<Song[]> {
-    return this.songRepository.find();
+    return this.songsRepository.find();
   }
 
   findOne(id: number): Promise<Song | null> {
-    return this.songRepository.findOneBy({ id });
+    return this.songsRepository.findOneBy({ id });
   }
 
   remove(id: number): Promise<DeleteResult> {
-    return this.songRepository.delete(id);
+    return this.songsRepository.delete(id);
   }
 
   update(id: number, songDTO: UpdateSongDTO): Promise<UpdateResult> {
-    return this.songRepository.update(id, songDTO);
+    return this.songsRepository.update(id, songDTO);
   }
 
   paginate(options: IPaginationOptions): Promise<Pagination<Song>> {
-    const queryBuilder = this.songRepository.createQueryBuilder('c');
+    const queryBuilder = this.songsRepository.createQueryBuilder('c');
     queryBuilder.orderBy('c.releasedDate', 'DESC');
     return paginate<Song>(queryBuilder, options);
   }
