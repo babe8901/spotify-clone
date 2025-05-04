@@ -5,6 +5,7 @@ import { Repository, UpdateResult } from 'typeorm';
 import { CreateUserDTO } from './dto/create-user-dto';
 import * as bcrypt from 'bcryptjs';
 import { LoginDTO } from 'src/auth/dto/login-dto';
+import { v4 as uuid4 } from 'uuid';
 
 @Injectable()
 export class UsersService {
@@ -14,12 +15,21 @@ export class UsersService {
   ) {}
 
   async create(userDTO: CreateUserDTO) {
+    const user = new User();
+    user.firstName = userDTO.firstName;
+    user.lastName = userDTO.lastName;
+    user.email = userDTO.email;
+    user.apiKey = uuid4();
+
     const salt = await bcrypt.genSalt();
-    userDTO.password = await bcrypt.hash(userDTO.password, salt);
-    const user: Omit<CreateUserDTO & User, 'password'> & { password?: string } =
-      await this.userRepository.save(userDTO);
-    delete user.password;
-    return user;
+    user.password = await bcrypt.hash(userDTO.password, salt);
+
+    const savedUser: Omit<User, 'password'> & {
+      password?: string;
+    } = await this.userRepository.save(user);
+
+    delete savedUser.password;
+    return savedUser;
   }
 
   async findOne(data: LoginDTO): Promise<User> {
@@ -32,6 +42,10 @@ export class UsersService {
 
   async findById(userId: number): Promise<User | null> {
     return this.userRepository.findOneBy({ id: userId });
+  }
+
+  async findByApiKey(apiKey: string): Promise<User | null> {
+    return this.userRepository.findOneBy({ apiKey });
   }
 
   async updateSecretKey(userId: number, secret: string): Promise<UpdateResult> {

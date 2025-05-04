@@ -6,6 +6,7 @@ import { JwtService } from '@nestjs/jwt';
 import { ArtistsService } from 'src/artists/artists.service';
 import { Enable2FAType, PayloadType } from './types';
 import * as speakeasy from 'speakeasy';
+import { User } from 'src/users/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -93,5 +94,9 @@ export class AuthService {
     } catch {
       throw new UnauthorizedException('Error verifying token');
     }
+  }
+
+  async validateUserByApiKey(apiKey: string): Promise<User | null> {
+    return await this.userService.findByApiKey(apiKey);
   }
 }
