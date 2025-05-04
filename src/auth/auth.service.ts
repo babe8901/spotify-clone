@@ -7,6 +7,7 @@ import { ArtistsService } from 'src/artists/artists.service';
 import { Enable2FAType, PayloadType } from './types';
 import * as speakeasy from 'speakeasy';
 import { User } from 'src/users/user.entity';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
@@ -14,6 +15,7 @@ export class AuthService {
     private userService: UsersService,
     private jwtService: JwtService,
     private artistService: ArtistsService,
+    private configService: ConfigService,
   ) {}
 
   async login(
@@ -98,5 +100,9 @@ export class AuthService {
 
   async validateUserByApiKey(apiKey: string): Promise<User | null> {
     return await this.userService.findByApiKey(apiKey);
+  }
+
+  getEnvVariable() {
+    return this.configService.get<number>('dbUsername');
   }
 }
