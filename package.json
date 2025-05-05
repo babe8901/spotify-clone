@@ -93,5 +93,14 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "pkg": {
+    "scripts": "dist/**/*.js",
+    "assets": [
+      "node_modules/**/*",
+      "dist/**/*.js"
+    ],
+    "targets": ["node16-win-x64"]
+  },
+  "bin": "dist/src/main.js"
 }
