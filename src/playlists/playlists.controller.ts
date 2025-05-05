@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { Playlist } from './playlist.entity';
 import { PlayListsService } from './playlists.service';
-import { CreatePlayListDto } from './dto/create-playlist-dto';
+import { CreatePlayListDTO } from './dto/create-playlist-dto';
 
 @Controller('playlists')
 export class PlayListsController {
@@ -9,7 +9,7 @@ export class PlayListsController {
   @Post()
   create(
     @Body()
-    playlistDTO: CreatePlayListDto,
+    playlistDTO: CreatePlayListDTO,
   ): Promise<Playlist> {
     return this.playListService.create(playlistDTO);
   }

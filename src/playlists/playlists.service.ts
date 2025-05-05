@@ -2,10 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Playlist } from './playlist.entity';
 import { Repository } from 'typeorm';
-// import { CreatePlayListDto } from './dto/create-playlist.dto';
 import { Song } from 'src/songs/song.entity';
 import { User } from 'src/users/user.entity';
-import { CreatePlayListDto } from './dto/create-playlist-dto';
+import { CreatePlayListDTO } from './dto/create-playlist-dto';
 
 @Injectable()
 export class PlayListsService {
@@ -18,7 +17,7 @@ export class PlayListsService {
     private userRepo: Repository<User>,
   ) {}
 
-  async create(playListDTO: CreatePlayListDto): Promise<Playlist> {
+  async create(playListDTO: CreatePlayListDTO): Promise<Playlist> {
     const playList = new Playlist();
     playList.name = playListDTO.name;
     // songs will be the array of IDs that we are getting from the DTO object

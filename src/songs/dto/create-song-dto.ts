@@ -1,3 +1,4 @@
+import { PickType } from '@nestjs/swagger';
 import {
   IsString,
   IsNotEmpty,
@@ -8,8 +9,15 @@ import {
   IsNumber,
 } from 'class-validator';
 import { Artist } from 'src/artists/artist.entity';
+import { Song } from '../song.entity';
 
-export class CreateSongDTO {
+export class CreateSongDTO extends PickType(Song, [
+  'title',
+  'artists',
+  'releasedDate',
+  'duration',
+  'lyrics',
+]) {
   @IsString()
   @IsNotEmpty()
   readonly title: string;
