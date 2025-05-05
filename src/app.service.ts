@@ -9,6 +9,6 @@ export class AppService {
   ) {}
 
   getHello(): string {
-    return `Hello I am learning Nest.js Fundamentals ${this.devConfigService.getDBHOST()} PORT = ${this.config.port}`;
+    return `Hello I am learning Nest.js Fundamentals`;
   }
 }
