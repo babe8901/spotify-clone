@@ -3,6 +3,7 @@ import {
   TypeOrmModuleAsyncOptions,
   TypeOrmModuleOptions,
 } from '@nestjs/typeorm';
+import { Entities } from 'src/entity';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
 export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
@@ -16,7 +17,9 @@ export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
       username: configService.get<string>('dbUsername'),
       database: configService.get<string>('dbName'),
       password: configService.get<string>('dbPassword'),
-      entities: ['dist/**/*.entity.js'],
+      // entities: ['dist/**/*.entity.js'],
+      // This does not work. Webpack bundles to memory; no file system, globs don’t resolve
+      entities: Object.values(Entities),
       synchronize: false,
       migrations: ['dist/db/migrations/*.js'],
     };

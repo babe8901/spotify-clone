@@ -10,7 +10,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: authConstants.secret,
+      secretOrKey: process.env.SECRET || authConstants.secret,
+      // I don't know why but authConstant.secret is not working even
+      // though they are exactly the same value
     });
   }
 

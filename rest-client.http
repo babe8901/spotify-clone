@@ -10,7 +10,7 @@ GET http://localhost:3000/songs/2
 ###
 POST http://localhost:3000/songs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbjFAZ21haWwuY29tIiwidXNlcklkIjo5LCJhcnRpc3RJZCI6MywiaWF0IjoxNzQ2MzA0MTg0LCJleHAiOjE3NDYzOTA1ODR9.RXTSmFDfWCvYo9tFsnjYNww2Eo7E3KbCMRQHxc4FLHg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4xMjNAZ21haWwuY29tIiwidXNlcklkIjo1LCJhcnRpc3RJZCI6MiwiaWF0IjoxNzQ2NDcxMjM1LCJleHAiOjE3NDY1NTc2MzV9.g5gUEsufcElHdKJxikY3teNyMGwZvUmokLU7wPglUsg
 
 {
   "title": "You for me 121",
@@ -64,7 +64,7 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-"email": "john@gmail.com",
+"email": "john123@gmail.com",
 "password": "123456"
 }
 
@@ -72,7 +72,7 @@ Content-Type: application/json
 
 ### Profile
 GET http://localhost:3000/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjo0LCJpYXQiOjE3NDYzMDQxNjAsImV4cCI6MTc0NjM5MDU2MH0.qkSc2jwp9ZRoSyUIrvT9x6m9iF32TWMdPpJJjRUnxmI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4xMjNAZ21haWwuY29tIiwidXNlcklkIjo1LCJhcnRpc3RJZCI6MiwiaWF0IjoxNzQ2NDcxMzM5LCJleHAiOjE3NDY1NTc3Mzl9._xDE9snttolmI66PilGUOAfDueePwW9-LOzYjP6fXmY
 
 
 ### Signup Artist
@@ -101,15 +101,15 @@ Content-Type: application/json
 
 ### Profile
 GET http://localhost:3000/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbjFAZ21haWwuY29tIiwidXNlcklkIjo5LCJhcnRpc3RJZCI6MywiaWF0IjoxNzQ2MzA0MTg0LCJleHAiOjE3NDYzOTA1ODR9.RXTSmFDfWCvYo9tFsnjYNww2Eo7E3KbCMRQHxc4FLHg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4xMjNAZ21haWwuY29tIiwidXNlcklkIjo1LCJpYXQiOjE3NDY0Njk3NjUsImV4cCI6MTc0NjU1NjE2NX0.OcikQBlZhXW5y7U47L-jEArircwQvL5ZesYzaBwepx8
 
 ### Enable 2FA
 GET http://localhost:3000/auth/enable-2fa
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjo0LCJpYXQiOjE3NDYzNDgzMTUsImV4cCI6MTc0NjQzNDcxNX0.LeDMHVmatAfmd4wDvbClWpAmNww7PCxiM9sLLhnWnCQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4xMjNAZ21haWwuY29tIiwidXNlcklkIjo1LCJpYXQiOjE3NDY0Njk3NjUsImV4cCI6MTc0NjU1NjE2NX0.OcikQBlZhXW5y7U47L-jEArircwQvL5ZesYzaBwepx8
 
 ### Validate 2FA
 POST http://localhost:3000/auth/validate-2fa
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjo0LCJpYXQiOjE3NDYzNDQ3MTYsImV4cCI6MTc0NjQzMTExNn0.QtzNHzhrCZIlrgMKvuxaOXec401sM6Lr0iRviYhwZQU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4xMjNAZ21haWwuY29tIiwidXNlcklkIjo1LCJpYXQiOjE3NDY0Njk3NjUsImV4cCI6MTc0NjU1NjE2NX0.OcikQBlZhXW5y7U47L-jEArircwQvL5ZesYzaBwepx8
 Content-Type: application/json
 
 {
