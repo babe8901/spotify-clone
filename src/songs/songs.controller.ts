@@ -10,7 +10,6 @@ import {
   Post,
   Put,
   Query,
-  Request,
   Scope,
   UseGuards,
 } from '@nestjs/common';
@@ -21,19 +20,17 @@ import { DeleteResult, UpdateResult } from 'typeorm';
 import { UpdateSongDTO } from './dto/update-song-dto';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { JwtArtistGuard } from 'src/auth/jwt-artist-guard';
-import { PayloadType } from 'src/auth/types';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('songs')
 @Controller({ path: 'songs', scope: Scope.REQUEST })
 export class SongsController {
   constructor(private songsService: SongsService) {}
 
   @Post()
+  @ApiBearerAuth('JWT-auth')
   @UseGuards(JwtArtistGuard)
-  create(
-    @Body() createSongDTO: CreateSongDTO,
-    @Request() request: { user: PayloadType },
-  ): Promise<Song> {
-    console.log(request.user);
+  create(@Body() createSongDTO: CreateSongDTO): Promise<Song> {
     return this.songsService.create(createSongDTO);
   }
 
@@ -59,6 +56,8 @@ export class SongsController {
   }
 
   @Put(':id')
+  @ApiBearerAuth('JWT-auth')
+  @UseGuards(JwtArtistGuard)
   update(
     @Param(
       'id',
@@ -71,6 +70,8 @@ export class SongsController {
   }
 
   @Delete(':id')
+  @ApiBearerAuth('JWT-auth')
+  @UseGuards(JwtArtistGuard)
   delete(
     @Param(
       'id',
