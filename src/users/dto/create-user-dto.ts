@@ -6,7 +6,6 @@ export class CreateUserDTO extends PickType(User, [
   'firstName',
   'lastName',
   'email',
-  'password',
 ]) {
   @IsString()
   @IsNotEmpty()
