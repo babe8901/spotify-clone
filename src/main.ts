@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-// import { SeedService } from './seed/seed.service';
+import { SeedService } from './seed/seed.service';
 
 declare const module: {
   hot: { accept: () => void; dispose: (callback: () => Promise<void>) => void };
@@ -14,8 +14,8 @@ async function bootstrap(): Promise<void> {
   app.useGlobalPipes(new ValidationPipe());
 
   // You can enable seeding when you want
-  // const seedService = app.get(SeedService);
-  // await seedService.seed();
+  const seedService = app.get(SeedService);
+  await seedService.seed();
 
   const config = new DocumentBuilder()
     .setTitle('Spotify Clone')
