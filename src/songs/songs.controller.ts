@@ -10,7 +10,6 @@ import {
   Post,
   Put,
   Query,
-  Scope,
   UseGuards,
 } from '@nestjs/common';
 import { SongsService } from './songs.service';
@@ -23,7 +22,7 @@ import { JwtArtistGuard } from 'src/auth/jwt-artist-guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('songs')
-@Controller({ path: 'songs', scope: Scope.REQUEST })
+@Controller({ path: 'songs' })
 export class SongsController {
   constructor(private songsService: SongsService) {}
 
@@ -35,7 +34,12 @@ export class SongsController {
   }
 
   @Get()
-  findAll(
+  findAll(): Promise<Song[]> {
+    return this.songsService.findAll();
+  }
+
+  @Get()
+  findAllPaginate(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 10,
   ): Promise<Pagination<Song>> {

@@ -37,5 +37,5 @@ export class CreateSongDTO extends PickType(Song, [
 
   @IsString()
   @IsOptional()
-  readonly lyrics: string;
+  readonly lyrics?: string;
 }
